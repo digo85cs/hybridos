@@ -454,7 +454,7 @@ impl ApplicationHandler for ShellApp {
                 } else if state == winit::event::ElementState::Released {
                     if let Some(mut j) = self.janelas.iter_mut().find(|j| j.arrastando) {
                         j.arrastando = false;
-                        // M27/M28: Aero Snap - bordas = metade, cantos = quadrante, topo = maximiza
+                        // M27: Aero Snap - soltar na borda encaixa (esq/dir = metade, topo = maximiza)
                         let (sx, sy) = self.mouse;
                         let wscr = w_center(&self.window);
                         let hscr = h_center(&self.window);
