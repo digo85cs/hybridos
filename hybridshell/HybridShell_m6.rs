@@ -43,7 +43,7 @@ impl HardwareProfile {
             Ok(t) => t,
             Err(_) => std::fs::read_to_string("C:/Users/Rodrigo/relatorio.json").ok()?,
         };
-        let chaves = ['"ram_total_mb"', '"total_ram_mb"', '"ramMb"', '"totalRamMb"', '"memoria_total_mb"', '"ram_mb"'];
+        let chaves = ["\"ram_total_mb\"", "\"total_ram_mb\"", "\"ramMb\"", "\"totalRamMb\"", "\"memoria_total_mb\"", "\"ram_mb\""];
         for chave in chaves.iter() {
             if let Some(pos) = txt.find(chave) {
                 let depois = &txt[pos + chave.len()..];
