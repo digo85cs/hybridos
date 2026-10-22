@@ -6,6 +6,6 @@
 // ============================================================
 
 fn main() {
-    // placeholder de teste 35KB
+    // teste de limite do push_files
     let _ = 1;
 }
