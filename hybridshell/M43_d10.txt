@@ -1,4 +1,4 @@
-                            winit::keyboard::Key::Named(winit::keyboard::NamedKey::Tab) => {
+winit::keyboard::Key::Named(winit::keyboard::NamedKey::Tab) => {
                                 self.term.tab_completar();
                                 self.draw();
                                 return;
