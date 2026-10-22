@@ -1,0 +1,3 @@
+    bateria_aviso: bool,
+    favoritos: Vec<String>,
+}

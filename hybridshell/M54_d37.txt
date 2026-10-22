@@ -1,0 +1,25 @@
+                            if c.as_str().eq_ignore_ascii_case("c") {
+                                self.cfg.abrir();
+                                log_msg("configuracoes aberta (tecla c)");
+                                self.draw();
+                                return;
+                            }
+                            if c.as_str().eq_ignore_ascii_case("k") {
+                                let novo = if tema_carregar() == 1 { 0 } else { 1 };
+                                tema_salvar(novo);
+                                self.notif.disparar(self.frame, "TEMA", if novo == 1 { "CLARO ATIVADO" } else { "ESCURO ATIVADO" });
+                                self.draw();
+                                return;
+                            }
+                            if c.as_str().eq_ignore_ascii_case("=") {
+                                zoom_salvar(2);
+                                self.notif.disparar(self.frame, "ZOOM", "TEXTO GRANDE");
+                                self.draw();
+                                return;
+                            }
+                            if c.as_str().eq_ignore_ascii_case("-") {
+                                zoom_salvar(1);
+                                self.notif.disparar(self.frame, "ZOOM", "TEXTO NORMAL");
+                                self.draw();
+                                return;
+                            }

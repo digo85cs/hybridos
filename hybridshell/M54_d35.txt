@@ -1,0 +1,38 @@
+    // M52: favoritos - F marca/desmarca o selecionado (salvo em hybridos_favoritos.txt)
+    const FAV_PATH: &str = "C:/Users/Rodrigo/hybridos_favoritos.txt";
+
+    fn favorito_carregar() -> Vec<String> {
+        let mut v: Vec<String> = Vec::new();
+        if let Ok(txt) = std::fs::read_to_string(Self::FAV_PATH) {
+            for l in txt.lines() {
+                if !l.trim().is_empty() { v.push(l.trim().to_string()); }
+            }
+        }
+        v
+    }
+
+    fn favorito_salvar(&self) {
+        if let Ok(mut f) = std::fs::File::create(Self::FAV_PATH) {
+            use std::io::Write;
+            for l in &self.favoritos {
+                let _ = writeln!(f, "{}", l);
+            }
+        }
+        log_msg(&format!("M52: favoritos salvos ({})", self.favoritos.len()));
+    }
+
+    fn favorito_alternar(&mut self) {
+        if let Some((nome, pasta)) = self.entradas.get(self.selecionado).map(|(n, p)| (n.clone(), *p)) {
+            if pasta { return; }
+            if let Some(pos) = self.favoritos.iter().position(|f| f == &nome) {
+                self.favoritos.remove(pos);
+                log_msg(&format!("M52: favorito removido {}", nome));
+            } else {
+                self.favoritos.push(nome.clone());
+                log_msg(&format!("M52: favorito marcado {}", nome));
+            }
+            self.favorito_salvar();
+        }
+    }
+
+    fn entrar_sel(&mut self) {

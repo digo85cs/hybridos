@@ -1,0 +1,16 @@
+                            winit::keyboard::Key::Named(winit::keyboard::NamedKey::F2) => {
+                                if !self.fb.entradas.is_empty() {
+                                    self.fb.editar_iniciar(false);
+                                    log_msg("M45: renomear (F2)");
+                                    self.draw();
+                                    return;
+                                }
+                            }
+                            winit::keyboard::Key::Character(c) => {
+                                if c.as_str().eq_ignore_ascii_case("f") {
+                                    self.fb.favorito_alternar();
+                                    log_msg("M52: favorito (F)");
+                                    self.draw();
+                                    return;
+                                }
+                            }

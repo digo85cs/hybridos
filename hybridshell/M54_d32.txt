@@ -1,0 +1,17 @@
+// M51: busca arquivos reais na pasta do usuario (nome contem o termo, ate 5)
+fn buscar_arquivos(termo: &str) -> Vec<String> {
+    let mut r: Vec<String> = Vec::new();
+    let tl = termo.to_lowercase();
+    if let Ok(rd) = std::fs::read_dir("C:/Users/Rodrigo") {
+        for e in rd.flatten() {
+            if let Some(n) = e.file_name().to_str() {
+                if n.to_lowercase().contains(&tl) && r.len() < 5 {
+                    r.push(n.to_string());
+                }
+            }
+        }
+    }
+    r
+}
+
+const SPOT_CATALOG: &[(&str, &str)] = &[

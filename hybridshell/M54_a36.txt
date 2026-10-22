@@ -1,0 +1,8 @@
+                            winit::keyboard::Key::Named(winit::keyboard::NamedKey::F2) => {
+                                if !self.fb.entradas.is_empty() {
+                                    self.fb.editar_iniciar(false);
+                                    log_msg("M45: renomear (F2)");
+                                    self.draw();
+                                    return;
+                                }
+                            }

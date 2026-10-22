@@ -1,0 +1,6 @@
+                            if c.as_str().eq_ignore_ascii_case("c") {
+                                self.cfg.abrir();
+                                log_msg("configuracoes aberta (tecla c)");
+                                self.draw();
+                                return;
+                            }

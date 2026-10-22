@@ -1,0 +1,1 @@
+            let dica = if self.fb.editando { "NOME NOVO (ENTER SALVA / ESC CANCELA)" } else { "ENTER ABRE / DELETE APAGA / F2 RENOMEIA / N NOVA PASTA / BACKSPACE SOBE" };

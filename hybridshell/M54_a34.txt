@@ -1,0 +1,1 @@
+mon_ram: (0, 0), mon_bat: None, bateria_aviso: false }
