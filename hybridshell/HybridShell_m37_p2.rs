@@ -44,7 +44,7 @@ impl ShellApp {
         if self.notas.aberto { linhas.push(format!("notas||{}", if self.notas.minimizada { "min" } else { "max" })); }
         if self.calc.aberto { linhas.push(format!("calc||{}", if self.calc.minimizada { "min" } else { "max" })); }
         if let Ok(mut f) = std::fs::File::create(SESSAO_PATH) {
-            for l in linhas { let _ = writeln!(f, "{}", l); }
+            for l in &linhas { let _ = writeln!(f, "{}", l); }
         }
         log_msg(&format!("M37: sessao salva ({} apps)", linhas.len()));
     }
