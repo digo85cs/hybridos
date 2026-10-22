@@ -1,0 +1,16 @@
+                                    log_msg(&format!("spotlight abrindo: {}", nome));
+                                    let _ = std::process::Command::new(caminho).spawn();
+                                    self.notif.disparar(self.frame, "SPOTLIGHT", &format!("ABRINDO {}", nome));
+                                }
+                                // M61: se nao achou app, tenta abrir arquivo real no NOTAS
+                                if self.spot.buscar().is_none() {
+                                    let arqs = self.spot.buscar_arquivos_spot();
+                                    if let Some(primeiro) = arqs.first() {
+                                        let caminho = format!("C:/Users/Rodrigo/{}", primeiro);
+                                        self.notas.abrir_arquivo(&caminho);
+                                        self.notif.disparar(self.frame, "NOTAS", &format!("ABERTO: {}", primeiro));
+                                        log_msg(&format!("M61: spotlight abriu arquivo {}", caminho));
+                                    }
+                                }
+                                self.fechar_spot();
+                                self.draw();

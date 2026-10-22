@@ -1,0 +1,14 @@
+    fn abrir(&mut self) {
+        self.aberto = true;
+        self.minimizada = false;
+        // M56: carrega historico persistente (ultimos 20)
+        if self.historico.is_empty() {
+            if let Ok(txt) = std::fs::read_to_string("C:/Users/Rodrigo/hybridos_hist.txt") {
+                for l in txt.lines().rev().take(20) {
+                    if !l.trim().is_empty() { self.historico.push(l.trim().to_string()); }
+                }
+                self.historico.reverse();
+                self.hist_idx = self.historico.len();
+            }
+        }
+        if let Some((x, y, w, h)) = layout_carregar("terminal") {

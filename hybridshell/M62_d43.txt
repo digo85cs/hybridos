@@ -1,0 +1,4 @@
+    favoritos: Vec<String>,
+    prop_aberta: bool,
+    prop_txt: String,
+}

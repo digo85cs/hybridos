@@ -1,0 +1,19 @@
+    // M57: propriedades do selecionado (tecla P) - tamanho e data
+    fn propriedades(&mut self) {
+        if let Some((nome, pasta)) = self.entradas.get(self.selecionado).map(|(n, p)| (n.clone(), *p)) {
+            let caminho = format!("{}/{}", self.caminho.trim_end_matches('/'), nome);
+            match std::fs::metadata(&caminho) {
+                Ok(md) => {
+                    let tipo = if pasta { "PASTA" } else { "ARQUIVO" };
+                    let tam = if pasta { 0 } else { md.len() };
+                    let data = md.modified().ok().and_then(|d| d.duration_since(std::time::UNIX_EPOCH).ok()).map(|d| d.as_secs()).unwrap_or(0);
+                    log_msg(&format!("M57: {} {} {} bytes mod {}", tipo, caminho, tam, data));
+                    self.prop_txt = format!("{}: {} ({} bytes)", tipo, nome, tam);
+                    self.prop_aberta = true;
+                }
+                Err(e) => log_msg(&format!("M57: erro {}: {}", caminho, e)),
+            }
+        }
+    }
+
+    // M52: favoritos - F marca/desmarca o selecionado (salvo em hybridos_favoritos.txt)

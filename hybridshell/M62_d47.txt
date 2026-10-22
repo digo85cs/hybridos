@@ -1,0 +1,8 @@
+                            winit::keyboard::Key::Named(winit::keyboard::NamedKey::Escape) => {
+                                if self.fb.prop_aberta {
+                                    self.fb.prop_aberta = false;
+                                    log_msg("M60: propriedades fechadas");
+                                } else if self.fb.editando {
+                                    self.fb.editando = false;
+                                    log_msg("M45: edicao cancelada");
+                                } else {

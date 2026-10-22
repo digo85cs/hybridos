@@ -1,0 +1,5 @@
+                            winit::keyboard::Key::Named(winit::keyboard::NamedKey::Escape) => {
+                                if self.fb.editando {
+                                    self.fb.editando = false;
+                                    log_msg("M45: edicao cancelada");
+                                } else {

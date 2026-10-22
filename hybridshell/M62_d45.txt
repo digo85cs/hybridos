@@ -1,0 +1,13 @@
+                            winit::keyboard::Key::Character(c) => {
+                                if c.as_str().eq_ignore_ascii_case("f") {
+                                    self.fb.favorito_alternar();
+                                    log_msg("M52: favorito (F)");
+                                    self.draw();
+                                    return;
+                                }
+                                if c.as_str().eq_ignore_ascii_case("p") {
+                                    self.fb.propriedades();
+                                    self.draw();
+                                    return;
+                                }
+                            }

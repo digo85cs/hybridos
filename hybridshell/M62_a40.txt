@@ -1,0 +1,4 @@
+    fn abrir(&mut self) {
+        self.aberto = true;
+        self.minimizada = false;
+        if let Some((x, y, w, h)) = layout_carregar("terminal") {

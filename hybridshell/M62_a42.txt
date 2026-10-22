@@ -1,0 +1,1 @@
+    // M52: favoritos - F marca/desmarca o selecionado (salvo em hybridos_favoritos.txt)

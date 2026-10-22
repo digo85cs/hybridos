@@ -1,0 +1,10 @@
+    fn buscar(&self) -> Option<(&'static str, &'static str)> {
+        let q = self.query.to_uppercase();
+        if q.is_empty() { return None; }
+        for (nome, caminho) in SPOT_CATALOG {
+            if nome.starts_with(&q) {
+                return Some((nome, caminho));
+            }
+        }
+        None
+    }

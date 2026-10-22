@@ -1,0 +1,16 @@
+    fn buscar(&self) -> Option<(&'static str, &'static str)> {
+        let q = self.query.to_uppercase();
+        if q.is_empty() { return None; }
+        for (nome, caminho) in SPOT_CATALOG {
+            if nome.starts_with(&q) {
+                return Some((nome, caminho));
+            }
+        }
+        None
+    }
+
+    // M55: resultados de arquivos reais (ate 5, abaixo do app do catalogo)
+    fn buscar_arquivos_spot(&self) -> Vec<String> {
+        if self.query.len() < 2 { return Vec::new(); }
+        buscar_arquivos(&self.query)
+    }

@@ -1,0 +1,3 @@
+        self.historico.push(cmd.clone());
+        if self.historico.len() > 50 { self.historico.remove(0); }
+        self.hist_idx = self.historico.len();

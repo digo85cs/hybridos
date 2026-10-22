@@ -1,0 +1,7 @@
+        self.historico.push(cmd.clone());
+        if self.historico.len() > 50 { self.historico.remove(0); }
+        self.hist_idx = self.historico.len();
+        // M56: persiste o historico (append)
+        if let Ok(mut f) = std::fs::OpenOptions::new().create(true).append(true).open("C:/Users/Rodrigo/hybridos_hist.txt") {
+            let _ = writeln!(f, "{}", cmd);
+        }

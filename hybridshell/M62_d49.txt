@@ -1,0 +1,2 @@
+                self.print("  (historico persistente: setas cima/baixo)");
+                self.print("  (TAB completa nome de arquivo)");

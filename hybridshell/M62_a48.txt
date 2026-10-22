@@ -1,0 +1,6 @@
+                                    log_msg(&format!("spotlight abrindo: {}", nome));
+                                    let _ = std::process::Command::new(caminho).spawn();
+                                    self.notif.disparar(self.frame, "SPOTLIGHT", &format!("ABRINDO {}", nome));
+                                }
+                                self.fechar_spot();
+                                self.draw();
