@@ -1,0 +1,6 @@
+                            winit::keyboard::Key::Named(winit::keyboard::NamedKey::Tab) => {
+                                self.term.tab_completar();
+                                self.draw();
+                                return;
+                            }
+                            winit::keyboard::Key::Named(winit::keyboard::NamedKey::ArrowUp) => {

@@ -1,0 +1,2 @@
+                self.print("  (setas cima/baixo = historico de comandos)");
+                self.print("  (TAB completa nome de arquivo)");

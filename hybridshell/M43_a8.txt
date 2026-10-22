@@ -1,0 +1,4 @@
+        if ch.is_ascii_graphic() || ch == ' ' {
+            self.input.push(ch);
+        }
+    }

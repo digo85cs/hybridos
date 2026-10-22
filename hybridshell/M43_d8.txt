@@ -1,0 +1,34 @@
+        if ch.is_ascii_graphic() || ch == ' ' {
+            self.input.push(ch);
+        }
+    }
+
+    // M43: TAB completa nome de arquivo/pasta da pasta atual
+    fn tab_completar(&mut self) {
+        let pos = self.input.rfind(' ').map(|p| p + 1).unwrap_or(0);
+        let prefixo = self.input[pos..].to_string();
+        if prefixo.is_empty() { return; }
+        let pl = prefixo.to_lowercase();
+        let mut achado: Option<String> = None;
+        if let Ok(rd) = std::fs::read_dir(&self.cwd) {
+            for e in rd.flatten() {
+                let nome = e.file_name().to_string_lossy().to_string();
+                if nome.to_lowercase().starts_with(&pl) {
+                    if achado.is_none() {
+                        achado = Some(nome);
+                    } else {
+                        let atual = achado.unwrap();
+                        let mut comum = String::new();
+                        for (a, b) in atual.chars().zip(nome.chars()) {
+                            if a.to_ascii_lowercase() == b.to_ascii_lowercase() { comum.push(a); } else { break; }
+                        }
+                        achado = Some(comum);
+                    }
+                }
+            }
+        }
+        if let Some(nome) = achado {
+            self.input.truncate(pos);
+            self.input.push_str(&nome);
+        }
+    }
