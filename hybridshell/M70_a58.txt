@@ -1,0 +1,6 @@
+            "SYSINFO" => {
+                let prof = HardwareProfile::detect();
+                self.print(&format!("  RAM: {} MB", prof.total_ram_mb));
+                self.print(&format!("  FONTE: {}", prof.fonte));
+                self.print(&format!("  TECNICA: {:?}", prof.technique));
+            }

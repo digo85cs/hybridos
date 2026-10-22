@@ -1,0 +1,14 @@
+        // M48/M63/M65: papel de parede conforme o tema (0 escuro, 1 claro, 2 laranja) ou personalizado
+        if let Some(cor) = wall_carregar() {
+            for y in 0..h {
+                for x in 0..w {
+                    buf[(y * w + x) as usize] = cor;
+                }
+            }
+        } else if tema_carregar() == 1 {
+            draw_papel_parede_claro(&mut buf, w, h);
+        } else if tema_carregar() == 2 {
+            draw_papel_parede_laranja(&mut buf, w, h);
+        } else {
+            draw_papel_parede(&mut buf, w, h);
+        }

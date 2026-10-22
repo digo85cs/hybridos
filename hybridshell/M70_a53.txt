@@ -1,0 +1,6 @@
+        // M48: papel de parede conforme o tema
+        if tema_carregar() == 1 {
+            draw_papel_parede_claro(&mut buf, w, h);
+        } else {
+            draw_papel_parede(&mut buf, w, h);
+        }

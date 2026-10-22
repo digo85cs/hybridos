@@ -1,0 +1,1 @@
+        Self::draw_text(&mut buf, w, h, w - rw_titulo(&titulo) - 84, 9, titulo, 1, accent_carregar());

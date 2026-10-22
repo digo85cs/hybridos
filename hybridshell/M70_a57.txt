@@ -1,0 +1,2 @@
+        let rw = rel.len() as i32 * 6 * 2;
+        Self::draw_text(&mut buf, w, h, w - rw - 16, 9, &rel, 2, 0xFFCDD6F4);

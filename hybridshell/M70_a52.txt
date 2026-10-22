@@ -1,0 +1,6 @@
+fn tema_carregar() -> i32 {
+    if let Ok(txt) = std::fs::read_to_string(TEMA_PATH) {
+        if txt.trim() == "1" { return 1; }
+    }
+    0
+}

@@ -1,0 +1,21 @@
+// M65: papel de parede laranja (gradiente quente)
+fn draw_papel_parede_laranja(buf: &mut [u32], w: i32, h: i32) {
+    let c_topo = 0xFF2D1B0E;
+    let c_meio = 0xFF7A3418;
+    let c_base = 0xFFF84808;
+    let meio_y = (h as f32 * 0.55) as i32;
+    for y in 0..h {
+        let cor = if y < meio_y {
+            let t = y as f32 / meio_y as f32;
+            lerp_cor(c_topo, c_meio, t)
+        } else {
+            let t = (y - meio_y) as f32 / (h - meio_y) as f32;
+            lerp_cor(c_meio, c_base, t)
+        };
+        for x in 0..w {
+            buf[(y * w + x) as usize] = cor;
+        }
+    }
+}
+
+// M48: papel de parede claro (gradiente suave)

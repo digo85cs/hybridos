@@ -1,0 +1,9 @@
+        let rw = rel.len() as i32 * 6 * 2;
+        Self::draw_text(&mut buf, w, h, w - rw - 16, 9, &rel, 2, 0xFFCDD6F4);
+        // M69: RAM usada (a esquerda do relogio)
+        let (usada, total) = self.mon_ram;
+        if total > 0 {
+            let ram_txt = format!("{}M", usada);
+            let rww = ram_txt.len() as i32 * 6;
+            Self::draw_text(&mut buf, w, h, w - rw - 40 - rww, 9, &ram_txt, 1, 0xFF94E2D0);
+        }

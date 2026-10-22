@@ -1,0 +1,22 @@
+// M63: papel de parede personalizado (hybridos_wall.txt = cor hex ARGB ou vazio p/ padrao)
+const WALL_PATH: &str = "C:/Users/Rodrigo/hybridos_wall.txt";
+
+fn wall_carregar() -> Option<u32> {
+    let txt = std::fs::read_to_string(WALL_PATH).ok()?;
+    let t = txt.trim();
+    if t.len() >= 6 {
+        if let Ok(v) = u32::from_str_radix(t, 16) {
+            return Some(0xFF000000 | v);
+        }
+    }
+    None
+}
+
+fn wall_salvar(cor: u32) {
+    if let Ok(mut f) = std::fs::File::create(WALL_PATH) {
+        let _ = f.write_all(format!("{:06X}", cor & 0xFFFFFF).as_bytes());
+    }
+    log_msg(&format!("M63: papel de parede salvo {:06X}", cor & 0xFFFFFF));
+}
+
+// M48: papel de parede claro (gradiente suave)

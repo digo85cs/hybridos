@@ -1,0 +1,7 @@
+                            if c.as_str().eq_ignore_ascii_case("k") {
+                                let novo = if tema_carregar() == 1 { 0 } else { 1 };
+                                tema_salvar(novo);
+                                self.notif.disparar(self.frame, "TEMA", if novo == 1 { "CLARO ATIVADO" } else { "ESCURO ATIVADO" });
+                                self.draw();
+                                return;
+                            }

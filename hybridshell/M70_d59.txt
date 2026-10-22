@@ -1,0 +1,6 @@
+    // M70: uptime da sessao em segundos
+    fn uptime_segundos(&self) -> u64 {
+        self.ligado_em.elapsed().as_secs()
+    }
+
+    fn abrir_janela(&mut self) {

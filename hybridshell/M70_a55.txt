@@ -1,0 +1,1 @@
+// M63: papel de parede personalizado (hybridos_wall.txt = cor hex ARGB ou vazio p/ padrao)
