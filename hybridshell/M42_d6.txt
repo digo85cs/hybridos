@@ -1,0 +1,29 @@
+            "CP" | "COPY" => {
+                if partes.len() < 3 {
+                    self.print("uso: CP <origem> <destino>");
+                } else {
+                    let a = partes[1].replace('\\', "/");
+                    let ca = if a.contains(':') { a } else { format!("{}/{}", self.cwd.trim_end_matches('/'), a) };
+                    let b = partes[2].replace('\\', "/");
+                    let cb = if b.contains(':') { b } else { format!("{}/{}", self.cwd.trim_end_matches('/'), b) };
+                    match std::fs::copy(&ca, &cb) {
+                        Ok(n) => self.print(&format!("copiado: {} ({} bytes)", cb, n)),
+                        Err(e) => self.print(&format!("erro: {}", e)),
+                    }
+                }
+            }
+            "MV" | "MOVE" | "REN" => {
+                if partes.len() < 3 {
+                    self.print("uso: MV <origem> <destino> (renomear = MV na mesma pasta)");
+                } else {
+                    let a = partes[1].replace('\\', "/");
+                    let ca = if a.contains(':') { a } else { format!("{}/{}", self.cwd.trim_end_matches('/'), a) };
+                    let b = partes[2].replace('\\', "/");
+                    let cb = if b.contains(':') { b } else { format!("{}/{}", self.cwd.trim_end_matches('/'), b) };
+                    match std::fs::rename(&ca, &cb) {
+                        Ok(_) => self.print(&format!("movido: {} -> {}", ca, cb)),
+                        Err(e) => self.print(&format!("erro: {}", e)),
+                    }
+                }
+            }
+            "SAIR" | "EXIT" => {

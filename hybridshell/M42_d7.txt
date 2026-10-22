@@ -1,0 +1,3 @@
+                self.print("  ECHO txt > arq- grava texto em arquivo");
+                self.print("  CP <a> <b>    - copia arquivo");
+                self.print("  MV <a> <b>    - move/renomeia arquivo");

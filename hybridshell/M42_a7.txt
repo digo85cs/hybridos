@@ -1,0 +1,1 @@
+                self.print("  ECHO txt > arq- grava texto em arquivo");
