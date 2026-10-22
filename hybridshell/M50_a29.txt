@@ -1,0 +1,3 @@
+            self.mon_ram = ram_usada_mb();
+            self.mon_bat = bateria_ler();
+        }

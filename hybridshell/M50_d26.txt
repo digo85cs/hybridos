@@ -1,0 +1,18 @@
+// M49: escala global de texto (1 = normal, 2 = grande) - salvo em hybridos_zoom.txt
+const ZOOM_PATH: &str = "C:/Users/Rodrigo/hybridos_zoom.txt";
+
+fn zoom_carregar() -> i32 {
+    if let Ok(txt) = std::fs::read_to_string(ZOOM_PATH) {
+        if txt.trim() == "2" { return 2; }
+    }
+    1
+}
+
+fn zoom_salvar(z: i32) {
+    if let Ok(mut f) = std::fs::File::create(ZOOM_PATH) {
+        let _ = f.write_all(if z == 2 { "2" } else { "1" }.as_bytes());
+    }
+    log_msg(&format!("M49: zoom salvo {}", z));
+}
+
+// M48: tema global (0 = escuro, 1 = claro) - salvo em hybridos_tema.txt

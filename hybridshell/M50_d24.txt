@@ -1,0 +1,41 @@
+// M47: largura do titulo na barra (texto * 6 px + padding)
+fn rw_titulo(t: &str) -> i32 {
+    t.len() as i32 * 6 + 24
+}
+
+// M48: tema global (0 = escuro, 1 = claro) - salvo em hybridos_tema.txt
+const TEMA_PATH: &str = "C:/Users/Rodrigo/hybridos_tema.txt";
+
+fn tema_carregar() -> i32 {
+    if let Ok(txt) = std::fs::read_to_string(TEMA_PATH) {
+        if txt.trim() == "1" { return 1; }
+    }
+    0
+}
+
+fn tema_salvar(tema: i32) {
+    if let Ok(mut f) = std::fs::File::create(TEMA_PATH) {
+        let _ = f.write_all(if tema == 1 { "1" } else { "0" }.as_bytes());
+    }
+    log_msg(&format!("M48: tema salvo {}", if tema == 1 { "claro" } else { "escuro" }));
+}
+
+// M48: papel de parede claro (gradiente suave)
+fn draw_papel_parede_claro(buf: &mut [u32], w: i32, h: i32) {
+    let c_topo = 0xFFE8ECF4;
+    let c_meio = 0xFFC9D6EA;
+    let c_base = 0xFF9FB8D8;
+    let meio_y = (h as f32 * 0.55) as i32;
+    for y in 0..h {
+        let cor = if y < meio_y {
+            let t = y as f32 / meio_y as f32;
+            lerp_cor(c_topo, c_meio, t)
+        } else {
+            let t = (y - meio_y) as f32 / (h - meio_y) as f32;
+            lerp_cor(c_meio, c_base, t)
+        };
+        for x in 0..w {
+            buf[(y * w + x) as usize] = cor;
+        }
+    }
+}

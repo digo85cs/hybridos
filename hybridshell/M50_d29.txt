@@ -1,0 +1,11 @@
+            self.mon_ram = ram_usada_mb();
+            self.mon_bat = bateria_ler();
+            // M50: bateria fraca - avisa 1x por sessao
+            if let Some((pct, tomada)) = self.mon_bat {
+                if pct <= 20 && !tomada && !self.bateria_aviso {
+                    self.bateria_aviso = true;
+                    self.notif.disparar(self.frame, "BATERIA", &format!("FRACA: {}% - CONECTE A FONTE", pct));
+                    log_msg(&format!("M50: bateria fraca {}", pct));
+                }
+            }
+        }

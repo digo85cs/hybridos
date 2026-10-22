@@ -1,0 +1,1 @@
+// M48: tema global (0 = escuro, 1 = claro) - salvo em hybridos_tema.txt
