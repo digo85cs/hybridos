@@ -1,0 +1,5 @@
+                    if self.menu.hover >= 0 {
+                        self.activate_menu(self.menu.hover);
+                    } else if self.dock.hover >= 0 {
+                        self.activate(self.dock.hover);
+                    }

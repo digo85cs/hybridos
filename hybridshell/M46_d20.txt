@@ -1,0 +1,13 @@
+                    if self.menu.hover >= 0 {
+                        self.activate_menu(self.menu.hover);
+                    } else if self.dock.hover >= 0 {
+                        // M46: duplo clique no dock = alternar (fechar app aberto); simples = abrir/restaurar
+                        let (lx, ly, lf) = self.ultimo_clique_nat;
+                        let duplo = self.frame.wrapping_sub(lf) < 30 && (self.mouse.0 - lx).abs() < 8 && (self.mouse.1 - ly).abs() < 8;
+                        self.ultimo_clique_nat = (self.mouse.0, self.mouse.1, self.frame);
+                        if duplo {
+                            self.dock_toggle(self.dock.hover);
+                        } else {
+                            self.activate(self.dock.hover);
+                        }
+                    }

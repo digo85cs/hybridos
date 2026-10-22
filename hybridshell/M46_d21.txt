@@ -1,0 +1,56 @@
+    // M46: duplo clique no dock - fecha o app nativo se aberto
+    fn dock_toggle(&mut self, item: i32) {
+        match item {
+            2 => {
+                if self.fb.aberto {
+                    layout_salvar("arquivos", self.fb.x, self.fb.y, self.fb.w, self.fb.h);
+                    self.fb.aberto = false;
+                    log_msg("M46: arquivos fechado (duplo clique dock)");
+                } else {
+                    self.activate(2);
+                }
+            }
+            3 => {
+                if self.term.aberto {
+                    layout_salvar("terminal", self.term.x, self.term.y, self.term.w, self.term.h);
+                    self.term.aberto = false;
+                    log_msg("M46: terminal fechado (duplo clique dock)");
+                } else {
+                    self.activate(3);
+                }
+            }
+            4 => {
+                if self.cfg.aberto {
+                    layout_salvar("config", self.cfg.x, self.cfg.y, self.cfg.w, self.cfg.h);
+                    self.cfg.aberto = false;
+                    log_msg("M46: config fechado (duplo clique dock)");
+                } else {
+                    self.activate(4);
+                }
+            }
+            5 => {
+                if self.notas.aberto {
+                    if self.notas.sujo {
+                        self.notas.salvar();
+                    }
+                    layout_salvar("notas", self.notas.x, self.notas.y, self.notas.w, self.notas.h);
+                    self.notas.aberto = false;
+                    log_msg("M46: notas fechado (duplo clique dock)");
+                } else {
+                    self.activate(5);
+                }
+            }
+            6 => {
+                if self.calc.aberto {
+                    layout_salvar("calc", self.calc.x, self.calc.y, self.calc.w, self.calc.h);
+                    self.calc.aberto = false;
+                    log_msg("M46: calc fechado (duplo clique dock)");
+                } else {
+                    self.activate(6);
+                }
+            }
+            _ => self.activate(item),
+        }
+    }
+
+    fn activate(&mut self, item: i32) {
