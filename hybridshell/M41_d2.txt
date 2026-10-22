@@ -1,0 +1,2 @@
+                self.print("  DEL <arq>    - apaga arquivo");
+                self.print("  ECHO txt > arq- grava texto em arquivo");

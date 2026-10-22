@@ -1,0 +1,1 @@
+                self.print("  (ENTER em .txt no ARQUIVOS abre no NOTAS)");

@@ -1,0 +1,31 @@
+                            winit::keyboard::Key::Named(winit::keyboard::NamedKey::Escape) => {
+                                layout_salvar("arquivos", self.fb.x, self.fb.y, self.fb.w, self.fb.h);
+                                self.fb.aberto = false;
+                                log_msg("arquivos fechado (esc)");
+                            }
+                            winit::keyboard::Key::Named(winit::keyboard::NamedKey::Delete) => {
+                                // M41: DELETE apaga o arquivo selecionado (nunca pasta)
+                                if let Some((nome, pasta)) = self.fb.entradas.get(self.fb.selecionado).map(|(n, p)| (n.clone(), *p)) {
+                                    if pasta {
+                                        self.notif.disparar(self.frame, "ARQUIVOS", "NAO APAGA PASTA");
+                                        log_msg("M41: recusa apagar pasta");
+                                    } else {
+                                        let caminho = format!("{}/{}", self.fb.caminho.trim_end_matches('/'), nome);
+                                        match std::fs::remove_file(&caminho) {
+                                            Ok(_) => {
+                                                self.fb.recargar();
+                                                if self.fb.selecionado >= self.fb.entradas.len() && self.fb.selecionado > 0 {
+                                                    self.fb.selecionado -= 1;
+                                                }
+                                                self.notif.disparar(self.frame, "ARQUIVOS", &format!("APAGADO: {}", nome));
+                                                log_msg(&format!("M41: apagado {}", caminho));
+                                            }
+                                            Err(e) => {
+                                                self.notif.disparar(self.frame, "ARQUIVOS", "ERRO AO APAGAR");
+                                                log_msg(&format!("M41: erro apagar {}: {}", caminho, e));
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                            _ => consumiu = false,

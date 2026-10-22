@@ -1,0 +1,26 @@
+            "ECHO" => {
+                // M41: redirecionamento - ECHO txt > arquivo grava, >> adiciona
+                let resto = partes[1..].join(" ");
+                if let Some(pos) = resto.find(">>") {
+                    let texto = resto[..pos].trim().to_string();
+                    let alvo = resto[pos + 2..].trim().replace('\\', "/");
+                    let caminho = if alvo.contains(':') { alvo } else { format!("{}/{}", self.cwd.trim_end_matches('/'), alvo) };
+                    match std::fs::OpenOptions::new().create(true).append(true).open(&caminho) {
+                        Ok(mut f) => {
+                            let _ = writeln!(f, "{}", texto);
+                            self.print(&format!("adicionado em: {}", caminho));
+                        }
+                        Err(e) => self.print(&format!("erro: {}", e)),
+                    }
+                } else if let Some(pos) = resto.find('>') {
+                    let texto = resto[..pos].trim().to_string();
+                    let alvo = resto[pos + 1..].trim().replace('\\', "/");
+                    let caminho = if alvo.contains(':') { alvo } else { format!("{}/{}", self.cwd.trim_end_matches('/'), alvo) };
+                    match std::fs::write(&caminho, texto.as_bytes()) {
+                        Ok(_) => self.print(&format!("gravado em: {}", caminho)),
+                        Err(e) => self.print(&format!("erro: {}", e)),
+                    }
+                } else {
+                    self.print(&resto);
+                }
+            }

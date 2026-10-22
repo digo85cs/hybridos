@@ -1,0 +1,1 @@
+            let dica = "ENTER ABRE (.TXT NO NOTAS) / DELETE APAGA / BACKSPACE SOBE";

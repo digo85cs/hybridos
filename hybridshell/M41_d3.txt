@@ -1,0 +1,1 @@
+                self.print("  (ENTER abre .txt no NOTAS / DELETE apaga arquivo)");
