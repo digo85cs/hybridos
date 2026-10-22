@@ -1,0 +1,35 @@
+                        let mut consumiu = true;
+                        if self.fb.editando {
+                            match &event.logical_key {
+                                winit::keyboard::Key::Named(winit::keyboard::NamedKey::Backspace) => {
+                                    self.fb.edit_txt.pop();
+                                    self.draw();
+                                    return;
+                                }
+                                winit::keyboard::Key::Named(winit::keyboard::NamedKey::Enter) => {
+                                    self.fb.editar_confirmar();
+                                    self.draw();
+                                    return;
+                                }
+                                _ => {}
+                            }
+                        }
+                        match &event.logical_key {
+                            winit::keyboard::Key::Named(winit::keyboard::NamedKey::F2) => {
+                                if !self.fb.entradas.is_empty() {
+                                    self.fb.editar_iniciar(false);
+                                    log_msg("M45: renomear (F2)");
+                                    self.draw();
+                                    return;
+                                }
+                            }
+                            winit::keyboard::Key::Character(c) => {
+                                if c.as_str().eq_ignore_ascii_case("n") {
+                                    self.fb.editar_iniciar(true);
+                                    log_msg("M45: nova pasta (N)");
+                                    self.draw();
+                                    return;
+                                }
+                            }
+                            winit::keyboard::Key::Named(winit::keyboard::NamedKey::ArrowUp) => self.fb.mover(-1),
+                            winit::keyboard::Key::Named(winit::keyboard::NamedKey::ArrowDown) => self.fb.mover(1),

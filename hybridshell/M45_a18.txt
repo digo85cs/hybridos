@@ -1,0 +1,4 @@
+                        let mut consumiu = true;
+                        match &event.logical_key {
+                            winit::keyboard::Key::Named(winit::keyboard::NamedKey::ArrowUp) => self.fb.mover(-1),
+                            winit::keyboard::Key::Named(winit::keyboard::NamedKey::ArrowDown) => self.fb.mover(1),

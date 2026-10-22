@@ -1,0 +1,39 @@
+    // M45: inicia edicao (F2 renomeia o selecionado; N cria pasta nova)
+    fn editar_iniciar(&mut self, nova: bool) {
+        self.edit_nova = nova;
+        self.editando = true;
+        self.edit_txt = if nova { "nova pasta".to_string() } else { self.entradas.get(self.selecionado).map(|(n, _)| n.clone()).unwrap_or_default() };
+    }
+
+    fn editar_confirmar(&mut self) {
+        let alvo = self.edit_txt.trim().to_string();
+        self.editando = false;
+        if alvo.is_empty() { return; }
+        let base_p = self.caminho.trim_end_matches('/').to_string();
+        if self.edit_nova {
+            let caminho = format!("{}/{}", base_p, alvo);
+            match std::fs::create_dir(&caminho) {
+                Ok(_) => {
+                    self.recargar();
+                    log_msg(&format!("M45: pasta criada {}", caminho));
+                }
+                Err(e) => {
+                    log_msg(&format!("M45: erro criar {}: {}", caminho, e));
+                }
+            }
+        } else if let Some((nome, pasta)) = self.entradas.get(self.selecionado).map(|(n, p)| (n.clone(), *p)) {
+            let de = format!("{}/{}", base_p, nome);
+            let para = format!("{}/{}", base_p, alvo);
+            match std::fs::rename(&de, &para) {
+                Ok(_) => {
+                    self.recargar();
+                    log_msg(&format!("M45: renomeado {} -> {}", de, para));
+                }
+                Err(e) => {
+                    log_msg(&format!("M45: erro renomear {}: {}", de, e));
+                }
+            }
+        }
+    }
+
+    fn entrar_sel(&mut self) {

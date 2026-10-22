@@ -1,0 +1,10 @@
+    selecionado: usize,
+    scroll: usize,
+    arrastando: bool,
+    redimensionando: bool,
+    minimizada: bool,
+    maximizada: bool,
+    pre_max: (i32, i32, i32, i32),
+    dx: i32,
+    dy: i32,
+}

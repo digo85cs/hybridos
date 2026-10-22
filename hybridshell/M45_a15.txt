@@ -1,0 +1,1 @@
+        FileBrowser { aberto: false, x: 160, y: 70, w: 460, h: 380, caminho: String::new(), entradas: Vec::new(), selecionado: 0, scroll: 0, arrastando: false, redimensionando: false, minimizada: false, maximizada: false, pre_max: (0, 0, 0, 0), dx: 0, dy: 0 }

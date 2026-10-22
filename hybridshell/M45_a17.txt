@@ -1,0 +1,6 @@
+                            winit::keyboard::Key::Named(winit::keyboard::NamedKey::Escape) => {
+                                layout_salvar("arquivos", self.fb.x, self.fb.y, self.fb.w, self.fb.h);
+                                self.fb.aberto = false;
+                                log_msg("arquivos fechado (esc)");
+                            }
+                            winit::keyboard::Key::Named(winit::keyboard::NamedKey::Delete) => {
