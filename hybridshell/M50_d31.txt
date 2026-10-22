@@ -1,0 +1,13 @@
+                            if c.as_str().eq_ignore_ascii_case("=") {
+                                zoom_salvar(2);
+                                self.notif.disparar(self.frame, "ZOOM", "TEXTO GRANDE");
+                                self.draw();
+                                return;
+                            }
+                            if c.as_str().eq_ignore_ascii_case("-") {
+                                zoom_salvar(1);
+                                self.notif.disparar(self.frame, "ZOOM", "TEXTO NORMAL");
+                                self.draw();
+                                return;
+                            }
+                            if c.as_str().eq_ignore_ascii_case("k") {
