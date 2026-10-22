@@ -1,0 +1,28 @@
+        if let Some(nome) = achado {
+            self.input.truncate(pos);
+            self.input.push_str(&nome);
+        }
+    }
+
+    // M44: arvore recursiva da pasta (profundidade 3, 30 itens por pasta)
+    fn tree_listar(&mut self, pasta: &str, nivel: usize) {
+        if nivel > 3 { return; }
+        if let Ok(rd) = std::fs::read_dir(pasta) {
+            let mut itens: Vec<(bool, String)> = Vec::new();
+            for e in rd.flatten() {
+                let eh_dir = e.path().is_dir();
+                itens.push((eh_dir, e.file_name().to_string_lossy().to_string()));
+            }
+            itens.sort();
+            for (eh_dir, nome) in itens.iter().take(30) {
+                let recuo = "  ".repeat(nivel + 1);
+                if *eh_dir {
+                    self.print(&format!("{}[{}]", recuo, nome));
+                    let caminho = format!("{}/{}", pasta.trim_end_matches('/'), nome);
+                    self.tree_listar(&caminho, nivel + 1);
+                } else {
+                    self.print(&format!("{}{}", recuo, nome));
+                }
+            }
+        }
+    }

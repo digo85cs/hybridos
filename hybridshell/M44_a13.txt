@@ -1,0 +1,5 @@
+        if let Some(nome) = achado {
+            self.input.truncate(pos);
+            self.input.push_str(&nome);
+        }
+    }

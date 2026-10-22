@@ -1,0 +1,28 @@
+            "TREE" => {
+                let raiz = self.cwd.clone();
+                self.print(&format!("arvore: {}", raiz));
+                self.tree_listar(&raiz, 0);
+            }
+            "FIND" => {
+                if partes.len() < 3 {
+                    self.print("uso: FIND <arq> <texto>");
+                } else {
+                    let a = partes[1].replace('\\', "/");
+                    let caminho = if a.contains(':') { a } else { format!("{}/{}", self.cwd.trim_end_matches('/'), a) };
+                    let alvo = partes[2..].join(" ").to_lowercase();
+                    match std::fs::read_to_string(&caminho) {
+                        Ok(conteudo) => {
+                            let mut n = 0;
+                            for (i, linha) in conteudo.lines().enumerate() {
+                                if linha.to_lowercase().contains(&alvo) {
+                                    n = n + 1;
+                                    self.print(&format!("{}: {}", i + 1, linha));
+                                }
+                            }
+                            if n == 0 { self.print("nada encontrado"); }
+                        }
+                        Err(e) => self.print(&format!("erro: {}", e)),
+                    }
+                }
+            }
+            "SAIR" | "EXIT" => {
