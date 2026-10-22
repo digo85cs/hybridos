@@ -1,13 +1,27 @@
-                    if self.menu.hover >= 0 {
-                        self.activate_menu(self.menu.hover);
-                    } else if self.dock.hover >= 0 {
-                        // M46: duplo clique no dock = alternar (fechar app aberto); simples = abrir/restaurar
-                        let (lx, ly, lf) = self.ultimo_clique_nat;
-                        let duplo = self.frame.wrapping_sub(lf) < 30 && (self.mouse.0 - lx).abs() < 8 && (self.mouse.1 - ly).abs() < 8;
-                        self.ultimo_clique_nat = (self.mouse.0, self.mouse.1, self.frame);
-                        if duplo {
-                            self.dock_toggle(self.dock.hover);
-                        } else {
-                            self.activate(self.dock.hover);
+                        if tecla_pressionada(VK_CONTROL) {
+                            if let winit::keyboard::Key::Character(c) = &event.logical_key {
+                                if c.as_str().eq_ignore_ascii_case("t") {
+                                    layout_salvar("terminal", self.term.x, self.term.y, self.term.w, self.term.h);
+                                    self.term.aberto = false;
+                                    self.notif.disparar(self.frame, "TERMINAL", "FECHADO (CTRL+T)");
+                                    log_msg("M46: terminal fechado (ctrl+t)");
+                                    self.draw();
+                                    return;
+                                }
+                                if c.as_str().eq_ignore_ascii_case("r") {
+                                    let mut n = 0;
+                                    if self.term.minimizada { self.term.minimizada = false; n = n + 1; }
+                                    if self.fb.minimizada { self.fb.minimizada = false; n = n + 1; }
+                                    if self.notas.minimizada { self.notas.minimizada = false; n = n + 1; }
+                                    if self.calc.minimizada { self.calc.minimizada = false; n = n + 1; }
+                                    if self.cfg.minimizada { self.cfg.minimizada = false; n = n + 1; }
+                                    self.notif.disparar(self.frame, "SISTEMA", &format!("{} JANELAS RESTAURADAS", n));
+                                    log_msg(&format!("M46: ctrl+r restaurou {}", n));
+                                    self.draw();
+                                    return;
+                                }
+                            }
                         }
-                    }
+                        match &event.logical_key {
+winit::keyboard::Key::Named(winit::keyboard::NamedKey::Tab) => {
+                                self.term.tab_completar();
