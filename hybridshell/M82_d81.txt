@@ -1,12 +1,9 @@
-            "BEEP" => {
-                som_notificacao();
-                self.print("bip!");
-            }
             "HIST" => {
                 if self.historico.is_empty() {
                     self.print("(historico vazio)");
                 } else {
-                    for (i86, h86) in self.historico.iter().enumerate() {
+                    let copia: Vec<String> = self.historico.clone();
+                    for (i86, h86) in copia.iter().enumerate() {
                         self.print(&format!("  {:>3} {}", i86 + 1, h86));
                     }
                 }
