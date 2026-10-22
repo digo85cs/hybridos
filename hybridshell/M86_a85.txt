@@ -1,0 +1,1 @@
+            let estado = if self.notas.sujo { format!("NAO SALVO - CTRL+S SALVA EM {}", nome_curto) } else { format!("SALVO: {}", nome_curto) };

@@ -1,0 +1,1 @@
+favoritos: FileBrowser::favorito_carregar(), prop_aberta: false, prop_txt: String::new() }

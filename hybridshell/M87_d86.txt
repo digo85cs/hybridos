@@ -1,0 +1,6 @@
+            let secs = self.ligado_em.elapsed().as_secs();
+            let min_up = secs / 60;
+            let hh_up = min_up / 60;
+            let mm_up = min_up % 60;
+            Self::draw_text(&mut buf, w, h, gx + 20, gy + 50, "HYBRID OS - M87", 2, 0xFFCBA6F7);
+            Self::draw_text(&mut buf, w, h, gx + 20, gy + 165, &format!("LIGADO HÁ: {}h{:02}min", hh_up, mm_up), 1, 0xFFA6E3A1);

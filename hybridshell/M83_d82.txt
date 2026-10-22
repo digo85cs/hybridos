@@ -1,0 +1,4 @@
+            "WHOAMI" => {
+                self.print("  Rodrigo (HYBRID OS)");
+            }
+            "HIST" => {

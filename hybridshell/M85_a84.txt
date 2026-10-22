@@ -1,0 +1,7 @@
+                                    if ch.is_ascii_digit() || ch == '.' || ch == '+' || ch == '-' || ch == '*' || ch == '/' {
+                                        self.calc.tecla_calc(ch);
+                                    } else if ch == 'c' || ch == 'C' {
+                                        self.calc.tecla_calc('C');
+                                    } else {
+                                        consumiu_calc = false;
+                                    }

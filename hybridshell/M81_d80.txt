@@ -1,0 +1,13 @@
+            let dica = if self.fb.prop_aberta { &self.fb.prop_txt } else if self.fb.editando { "NOME NOVO (ENTER SALVA / ESC CANCELA)" } else { "ENTER ABRE / DEL APAGA / F2 RENOMEIA / N PASTA / F FAVORITO / G FAVS / P PROP / BS SOBE" };
+            let _ = &self.fb.prop_txt;
+            Self::draw_text(&mut buf, w, h, fx + 14, fy + fh - 22, dica, 1, 0xFF6C7086);
+            // M81: painel de favoritos (G alterna)
+            if self.fb.painel_fav {
+                let favs = self.fb.favoritos_painel();
+                Self::draw_rounded_rect(&mut buf, w, h, fx + 8, fy + fh - 108, fw - 16, 78, 6, 0xFF313244);
+                Self::draw_text(&mut buf, w, h, fx + 14, fy + fh - 102, "FAVORITOS (*=ok !=sumiu)", 1, 0xFFF9E2AF);
+                for (i80, f80) in favs.iter().take(4).enumerate() {
+                    Self::draw_text(&mut buf, w, h, fx + 14, fy + fh - 88 + i80 as i32 * 14, f80, 1, 0xFFCDD6F4);
+                }
+            }
+        }

@@ -1,0 +1,11 @@
+                                if c.as_str().eq_ignore_ascii_case("p") {
+                                    self.fb.propriedades();
+                                    self.draw();
+                                    return;
+                                }
+                                if c.as_str().eq_ignore_ascii_case("g") {
+                                    self.fb.painel_fav = !self.fb.painel_fav;
+                                    log_msg("M81: painel de favoritos alternado (G)");
+                                    self.draw();
+                                    return;
+                                }

@@ -1,0 +1,3 @@
+                self.print("  BEEP         - teste de som");
+                self.print("  HIST         - historico de comandos");
+                self.print("  WHOAMI       - quem esta logado");

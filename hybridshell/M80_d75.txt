@@ -1,0 +1,10 @@
+                let cor = if *pasta { 0xFF89B4FA } else { 0xFFCDD6F4 };
+                let mut rot = if *pasta { format!("[{}]", nome) } else { nome.clone() };
+                let maxn = ((fw - 50) / 6) as usize;
+                if rot.len() > maxn { rot = rot[..maxn].to_string(); }
+                // M80: estrela de favorito (amarela) a esquerda do nome
+                if !*pasta && self.fb.favoritos.contains(nome) {
+                    Self::draw_text(&mut buf, w, h, fx + 18, ly, "*", 1, 0xFFF9E2AF);
+                }
+                let dx80 = if !*pasta && self.fb.favoritos.contains(nome) { 10 } else { 0 };
+                Self::draw_text(&mut buf, w, h, fx + 18 + dx80, ly, &rot, 1, cor);

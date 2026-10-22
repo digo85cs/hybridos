@@ -1,0 +1,4 @@
+            let dica = if self.fb.prop_aberta { &self.fb.prop_txt } else if self.fb.editando { "NOME NOVO (ENTER SALVA / ESC CANCELA)" } else { "ENTER ABRE / DEL APAGA / F2 RENOMEIA / N PASTA / F FAVORITO / P PROP / BS SOBE" };
+            let _ = &self.fb.prop_txt;
+            Self::draw_text(&mut buf, w, h, fx + 14, fy + fh - 22, dica, 1, 0xFF6C7086);
+        }

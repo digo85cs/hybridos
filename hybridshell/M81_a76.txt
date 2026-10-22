@@ -1,0 +1,1 @@
+    // M57: propriedades do selecionado (tecla P) - tamanho e data

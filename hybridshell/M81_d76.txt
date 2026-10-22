@@ -1,0 +1,12 @@
+    // M81: painel de favoritos (tecla G)
+    fn favoritos_painel(&self) -> Vec<String> {
+        let mut v: Vec<String> = Vec::new();
+        for f in &self.favoritos {
+            let caminho = format!("{}/{}", self.caminho.trim_end_matches('/'), f);
+            let existe = std::fs::metadata(&caminho).is_ok();
+            v.push(format!("{} {}", if existe { "*" } else { "!" }, f));
+        }
+        v
+    }
+
+    // M57: propriedades do selecionado (tecla P) - tamanho e data

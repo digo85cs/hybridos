@@ -1,0 +1,3 @@
+            let secs = self.ligado_em.elapsed().as_secs();
+            let min_up = secs / 60;
+            Self::draw_text(&mut buf, w, h, gx + 20, gy + 50, "HYBRID OS - M19", 2, 0xFFCBA6F7);

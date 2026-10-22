@@ -1,0 +1,7 @@
+    favoritos: Vec<String>,
+    prop_aberta: bool,
+    prop_txt: String,
+}
+
+impl FileBrowser {
+    fn hit_alca

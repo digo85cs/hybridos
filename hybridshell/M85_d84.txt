@@ -1,0 +1,11 @@
+                                    if ch.is_ascii_digit() || ch == '.' || ch == '+' || ch == '-' || ch == '*' || ch == '/' {
+                                        self.calc.tecla_calc(ch);
+                                    } else if ch == 'c' || ch == 'C' {
+                                        self.calc.tecla_calc('C');
+                                    } else if ch == '%' {
+                                        self.calc.display = format!("{}", self.calc.acc / 100.0);
+                                        self.calc.digitando = true;
+                                        log_msg("M85: porcentagem aplicada");
+                                    } else {
+                                        consumiu_calc = false;
+                                    }

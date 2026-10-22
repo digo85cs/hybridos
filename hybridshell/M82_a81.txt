@@ -1,0 +1,4 @@
+            "BEEP" => {
+                som_notificacao();
+                self.print("bip!");
+            }

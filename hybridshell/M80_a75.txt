@@ -1,0 +1,5 @@
+                let cor = if *pasta { 0xFF89B4FA } else { 0xFFCDD6F4 };
+                let mut rot = if *pasta { format!("[{}]", nome) } else { nome.clone() };
+                let maxn = ((fw - 50) / 6) as usize;
+                if rot.len() > maxn { rot = rot[..maxn].to_string(); }
+                Self::draw_text(&mut buf, w, h, fx + 18, ly, &rot, 1, cor);

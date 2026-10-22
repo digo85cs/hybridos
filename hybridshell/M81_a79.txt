@@ -1,0 +1,5 @@
+                                if c.as_str().eq_ignore_ascii_case("p") {
+                                    self.fb.propriedades();
+                                    self.draw();
+                                    return;
+                                }

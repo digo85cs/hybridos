@@ -1,0 +1,3 @@
+            let nl90 = self.notas.linhas.len();
+            let nc90: usize = self.notas.linhas.iter().map(|l| l.chars().count()).sum();
+            let estado = if self.notas.sujo { format!("{}L {}C NAO SALVO - CTRL+S SALVA EM {}", nl90, nc90, nome_curto) } else { format!("{}L {}C SALVO: {}", nl90, nc90, nome_curto) };
