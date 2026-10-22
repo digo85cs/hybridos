@@ -1,0 +1,7 @@
+        // M47: nome do app em foco na barra de menu
+        let titulo = if self.spot.aberto { "SPOTLIGHT" } else if self.term.aberto && !self.term.minimizada { "TERMINAL" } else if self.fb.aberto && !self.fb.minimizada { "ARQUIVOS" } else if self.cfg.aberto && !self.cfg.minimizada { "CONFIG" } else if self.notas.aberto && !self.notas.minimizada { "NOTAS" } else if self.calc.aberto && !self.calc.minimizada { "CALC" } else { "DESKTOP" };
+        let tw2 = titulo.len() as i32 * 6;
+        Self::draw_rounded_rect(&mut buf, w, h, w - rw_titulo(&titulo) - 92, 4, tw2 + 16, MENU_H - 8, 6, 0x40313244);
+        Self::draw_text(&mut buf, w, h, w - rw_titulo(&titulo) - 84, 9, titulo, 1, 0xFFA6E3A1);
+        let (hh, mm) = agora_hhmm();
+        let mut rel = String::new();

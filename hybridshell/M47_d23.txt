@@ -1,0 +1,6 @@
+// M47: largura do titulo na barra (texto * 6 px + padding)
+fn rw_titulo(t: &str) -> i32 {
+    t.len() as i32 * 6 + 24
+}
+
+fn agora_hhmm() -> (u32, u32) {

@@ -1,0 +1,2 @@
+        let (hh, mm) = agora_hhmm();
+        let mut rel = String::new();
