@@ -1,1 +1,6 @@
-P1_PLACEHOLDER_71380
+// ============================================================
+// HYBRID OS - CAMADA B / MARCO M25: BOTÕES DE TRÁFEGO
+// M24 + as 3 luzes do macOS: vermelho fecha, AMARELO minimiza
+// (janela some; clique no SISTEMA da dock restaura) e VERDE
+// maximiza/restaura (preenche entre menu e dock).
+// ============================================================
