@@ -1,0 +1,4 @@
+                self.print("  FIND <a> <tx> - busca texto no arquivo");
+                self.print("  WC <a>       - conta linhas/palavras/bytes");
+                self.print("  TOUCH <a>    - cria arquivo vazio");
+                self.print("  BEEP         - teste de som");

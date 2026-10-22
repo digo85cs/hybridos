@@ -1,0 +1,9 @@
+        // M69/M78: RAM usada com cor por uso (verde <60%, amarelo <85%, vermelho >=85%)
+        let (usada, total) = self.mon_ram;
+        if total > 0 {
+            let pct = (usada * 100 / total) as i32;
+            let cor_ram = if pct < 60 { 0xFF94E2D0 } else if pct < 85 { 0xFFF9E2AF } else { 0xFFF38BA8 };
+            let ram_txt = format!("{}%", pct);
+            let rww = ram_txt.len() as i32 * 6;
+            Self::draw_text(&mut buf, w, h, w - rw - 40 - rww, 9, &ram_txt, 1, cor_ram);
+        }

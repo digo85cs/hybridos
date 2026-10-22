@@ -1,0 +1,18 @@
+            "WC" => {
+                if partes.len() < 2 {
+                    self.print("uso: WC <arq>");
+                } else {
+                    let a = partes[1].replace('\\', "/");
+                    let caminho = if a.contains(':') { a } else { format!("{}/{}", self.cwd.trim_end_matches('/'), a) };
+                    match std::fs::read_to_string(&caminho) {
+                        Ok(txt) => {
+                            let nl = txt.lines().count();
+                            let np = txt.split_whitespace().count();
+                            let nb = txt.len();
+                            self.print(&format!("  {} linhas {} palavras {} bytes", nl, np, nb));
+                        }
+                        Err(e) => self.print(&format!("erro: {}", e)),
+                    }
+                }
+            }
+            "FIND" => {

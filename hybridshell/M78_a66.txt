@@ -1,0 +1,1 @@
+                self.print("  FIND <a> <tx> - busca texto no arquivo");

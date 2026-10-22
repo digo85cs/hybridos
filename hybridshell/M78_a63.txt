@@ -1,0 +1,4 @@
+            "DATE" => {
+                let (hh, mm) = agora_hhmm();
+                self.print(&format!("  {:02}:{:02} (UTC-3)", hh, mm));
+            }

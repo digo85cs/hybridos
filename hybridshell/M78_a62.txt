@@ -1,0 +1,3 @@
+            "CLEAR" | "CLS" => {
+                self.linhas.clear();
+            }

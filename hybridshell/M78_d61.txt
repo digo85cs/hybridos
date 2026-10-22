@@ -1,0 +1,7 @@
+                if pct <= 20 && !tomada && !self.bateria_aviso {
+                    self.bateria_aviso = true;
+                    self.notif.disparar(self.frame, "BATERIA", &format!("FRACA: {}% - CONECTE A FONTE", pct));
+                    som_notificacao();
+                    som_notificacao();
+                    log_msg(&format!("M50: bateria fraca {}", pct));
+                }

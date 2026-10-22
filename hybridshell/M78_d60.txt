@@ -1,0 +1,14 @@
+extern "system" {
+    fn GetSystemPowerStatus(ps: *mut PowerStatus) -> i32;
+}
+
+extern "system" {
+    fn Beep(freq: u32, duracao: u32) -> i32;
+}
+
+// M71: som de notificacao (bip curto)
+fn som_notificacao() {
+    unsafe {
+        let _ = Beep(880, 120);
+    }
+}

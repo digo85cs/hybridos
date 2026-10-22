@@ -1,0 +1,3 @@
+extern "system" {
+    fn GetSystemPowerStatus(ps: *mut PowerStatus) -> i32;
+}

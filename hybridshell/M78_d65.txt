@@ -1,0 +1,13 @@
+            "TOUCH" => {
+                if partes.len() < 2 {
+                    self.print("uso: TOUCH <arq>");
+                } else {
+                    let a = partes[1].replace('\\', "/");
+                    let caminho = if a.contains(':') { a } else { format!("{}/{}", self.cwd.trim_end_matches('/'), a) };
+                    match std::fs::write(&caminho, b"") {
+                        Ok(_) => self.print(&format!("criado: {}", caminho)),
+                        Err(e) => self.print(&format!("erro: {}", e)),
+                    }
+                }
+            }
+            "WC" => {

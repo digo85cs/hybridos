@@ -1,0 +1,7 @@
+            "CLEAR" | "CLS" => {
+                self.linhas.clear();
+            }
+            "BEEP" => {
+                som_notificacao();
+                self.print("bip!");
+            }
