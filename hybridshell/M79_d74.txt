@@ -1,0 +1,4 @@
+        if self.frame == 0 {
+            log_msg("primeiro frame OK");
+            self.notif.disparar(self.frame, "SISTEMA", "HYBRID OS LIGADO");
+        }

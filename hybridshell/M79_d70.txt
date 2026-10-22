@@ -1,0 +1,2 @@
+                // M70: uptime da sessao
+                let segs = uptime_segundos();

@@ -1,0 +1,5 @@
+thread_local! {
+    static INICIO: std::cell::RefCell<std::time::Instant> = std::cell::RefCell::new(std::time::Instant::now());
+}
+
+struct ShellApp {

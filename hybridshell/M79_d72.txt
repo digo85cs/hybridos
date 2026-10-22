@@ -1,0 +1,6 @@
+// M70: uptime da sessao em segundos (funcao livre - Terminal e ShellApp usam)
+fn uptime_segundos() -> u64 {
+    INICIO.with(|t| t.borrow().elapsed().as_secs())
+}
+
+fn agora_hhmm() -> (u32, u32) {

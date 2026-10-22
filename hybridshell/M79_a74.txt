@@ -1,0 +1,3 @@
+        if self.frame == 0 {
+            log_msg("primeiro frame OK");
+        }
